@@ -9,10 +9,9 @@ updates:
     labels:
       - "dependencies"
   - package-ecosystem: npm
-    directory: "/javascript"
+    directory: "/"
     target-branch: "dev"
     schedule:
       interval: "weekly"
     labels:
       - "dependencies"
-      
