@@ -1,0 +1,20 @@
+version: "1.0"
+settings:
+  language: "ko"
+  temperature: 0.2 # 일관된 리뷰를 위해 낮게 설정
+  max_tokens: 2048
+
+# 리뷰 시 제외할 파일들
+ignore:
+  - "**/node_modules/**"
+  - "**/package-lock.json"
+  - "**/yarn.lock"
+  - "**/build/**"
+  - "**/*.md" # 문서는 제외하고 코드 위주로
+
+# 특정 파일 타입별 가이드라인
+rules:
+  - files: ["**/Dockerfile", "docker-compose.yml"]
+    instruction: "Docker 레이어 캐싱 효율성과 이미지 크기 최적화를 중점적으로 확인해줘."
+  - files: ["src/api/**/*.js", "src/api/**/*.ts"]
+    instruction: "Strapi의 API 로직과 데이터 구조(Transformer 적용 여부)를 확인해줘."
