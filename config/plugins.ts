@@ -1,10 +1,6 @@
 import type { Core } from '@strapi/strapi';
 
 const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin => ({
-  // Meditor (마크다운 에디터)
-  meditor: {
-    enabled: true,
-  },
   // SEO 플러그인
   seo: {
     enabled: true,
