@@ -1,28 +1,30 @@
-# 1단계: 빌드 단계
+# Creating multi-stage build for production
 FROM node:lts-alpine AS build
-# sharp 라이브러리 등을 위한 필수 패키지 설치
-RUN apk update && apk add --no-cache build-base gcc autoconf automake libtool zlib-dev libpng-dev nasm bash vips-dev
-
+RUN apk update && apk add --no-cache build-base gcc autoconf automake zlib-dev libpng-dev vips-dev git > /dev/null 2>&1
 ARG NODE_ENV=production
 ENV NODE_ENV=${NODE_ENV}
 
-WORKDIR /opt/app
+WORKDIR /opt/
 COPY package.json package-lock.json ./
-# 플러그인 의존성 설치
-RUN npm install --production
-
+RUN npm install -g node-gyp
+RUN npm config set fetch-retry-maxtimeout 600000 -g && npm install --only=production
+ENV PATH=/opt/node_modules/.bin:$PATH
+WORKDIR /opt/app
 COPY . .
-# Strapi 관리자 패널 빌드
 RUN npm run build
 
-# 2단계: 실행 단계 (이미지 크기 최소화)
+# Creating final production image
 FROM node:lts-alpine
 RUN apk add --no-cache vips-dev
-ENV NODE_ENV=production
-
+ARG NODE_ENV=production
+ENV NODE_ENV=${NODE_ENV}
+WORKDIR /opt/
+COPY --from=build /opt/node_modules ./node_modules
 WORKDIR /opt/app
-# 빌드 단계에서 생성된 결과물만 복사
 COPY --from=build /opt/app ./
+ENV PATH=/opt/node_modules/.bin:$PATH
 
-EXPOSE 3000
+RUN chown -R node:node /opt/app
+USER node
+EXPOSE 1337
 CMD ["npm", "run", "start"]
