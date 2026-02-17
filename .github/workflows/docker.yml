@@ -53,6 +53,9 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
           platforms: linux/amd64
+          # caching with GitHub Actions cache
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
 
       - name: Image digest
         run: |

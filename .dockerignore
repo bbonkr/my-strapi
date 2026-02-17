@@ -1,0 +1,12 @@
+node_modules
+.git
+.cache
+build
+.tmp
+.env
+Dockerfile
+.dockerignore
+README.md
+.gemini
+.github
+.gitignore
