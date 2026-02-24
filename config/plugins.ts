@@ -18,7 +18,8 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
   },
   // AWS S3 (Minio 연동)
   upload: {
-    config: {
+    config: {      
+      security: buildUploadSecurity(env),
       provider: 'aws-s3',
       providerOptions: {
         baseUrl: env('MINIO_BASE_URL'),
@@ -28,7 +29,7 @@ const config = ({ env }: Core.Config.Shared.ConfigParams): Core.Config.Plugin =>
             accessKeyId: env('MINIO_ACCESS_KEY'),
             secretAccessKey: env('MINIO_SECRET_KEY'),
           },
-          endpoint: env('MINIO_ENDPOINT', 'https://storage.bbon.me'),
+          endpoint: env('MINIO_ENDPOINT'),
           forcePathStyle: env.bool('MINIO_FORCE_PATH_STYLE', true),
           region: env('MINIO_REGION', 'us-east-1'),
           params: {
