@@ -18,7 +18,8 @@
     "slug": {
       "type": "uid",
       "targetField": "name",
-      "required": true
+      "required": true,
+      "regex": "^[^\\s/]+$"
     },
     "description": {
       "type": "text"
