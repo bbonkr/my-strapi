@@ -17,7 +17,8 @@
     },
     "slug": {
       "type": "uid",
-      "targetField": "title"
+      "targetField": "title",
+      "regex": "^[^\\s/]+$"
     },
     "content": {
       "type": "blocks",
@@ -72,6 +73,9 @@
       "repeatable": true
     },
     "markdownContent": {
+      "type": "richtext"
+    },
+    "htmlContent": {
       "type": "richtext"
     }
   }
