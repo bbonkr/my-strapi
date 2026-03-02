@@ -18,7 +18,7 @@
     "@_sh/strapi-plugin-ckeditor": "^7.0.0",
     "@strapi-community/plugin-seo": "^2.1.1",
     "@strapi/plugin-cloud": "^5.18.0",
-    "@strapi/plugin-users-permissions": "5.36.0",
+    "@strapi/plugin-users-permissions": "5.36.1",
     "@strapi/provider-upload-aws-s3": "^5.36.1",
     "@strapi/strapi": "^5.36.0",
     "better-sqlite3": "12.4.1",
