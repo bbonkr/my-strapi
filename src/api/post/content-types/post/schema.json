@@ -20,12 +20,33 @@
       "targetField": "title",
       "regex": "^[^\\s/]+$"
     },
-    "content": {
-      "type": "blocks",
-      "required": false
+    "category": {
+      "type": "relation",
+      "relation": "manyToOne",
+      "target": "api::category.category",
+      "inversedBy": "posts"
     },
-    "except": {
-      "type": "text"
+    "featuredImage": {
+      "type": "media",
+      "multiple": false,
+      "allowedTypes": [
+        "images",
+        "files",
+        "videos",
+        "audios"
+      ]
+    },
+    "markdownContent": {
+      "type": "richtext"
+    },
+    "htmlContent": {
+      "type": "richtext"
+    },
+    "tags": {
+      "type": "relation",
+      "relation": "manyToMany",
+      "target": "api::tag.tag",
+      "inversedBy": "posts"
     },
     "state": {
       "type": "enumeration",
@@ -39,15 +60,8 @@
       "type": "datetime",
       "required": true
     },
-    "featuredImage": {
-      "type": "media",
-      "multiple": false,
-      "allowedTypes": [
-        "images",
-        "files",
-        "videos",
-        "audios"
-      ]
+    "excerpt": {
+      "type": "text"
     },
     "author": {
       "type": "relation",
@@ -55,28 +69,10 @@
       "target": "plugin::users-permissions.user",
       "inversedBy": "posts"
     },
-    "category": {
-      "type": "relation",
-      "relation": "manyToOne",
-      "target": "api::category.category",
-      "inversedBy": "posts"
-    },
-    "tags": {
-      "type": "relation",
-      "relation": "manyToMany",
-      "target": "api::tag.tag",
-      "inversedBy": "posts"
-    },
     "seo": {
       "type": "component",
       "component": "shared.seo",
       "repeatable": true
-    },
-    "markdownContent": {
-      "type": "richtext"
-    },
-    "htmlContent": {
-      "type": "richtext"
     }
   }
 }
