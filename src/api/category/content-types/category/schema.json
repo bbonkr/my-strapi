@@ -42,7 +42,7 @@
       "target": "api::post.post",
       "mappedBy": "category"
     },
-    "published": {
+    "isPublished": {
       "type": "boolean",
       "private": true,
       "required": true,
