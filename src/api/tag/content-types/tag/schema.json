@@ -25,6 +25,12 @@
       "relation": "manyToMany",
       "target": "api::post.post",
       "mappedBy": "tags"
+    },
+    "published": {
+      "type": "boolean",
+      "private": true,
+      "required": true,
+      "default": true
     }
   }
 }

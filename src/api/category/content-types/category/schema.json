@@ -41,6 +41,12 @@
       "relation": "oneToMany",
       "target": "api::post.post",
       "mappedBy": "category"
+    },
+    "published": {
+      "type": "boolean",
+      "private": true,
+      "required": true,
+      "default": true
     }
   }
 }
