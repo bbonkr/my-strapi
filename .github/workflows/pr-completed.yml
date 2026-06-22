@@ -20,7 +20,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: setup Node
         uses: actions/setup-node@v6
@@ -47,7 +47,7 @@ jobs:
       next_version: ${{ steps.next_version_proposal.outputs.next_version }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: "get next version name"
         uses: bbonkr/next-version-proposal-action@v1
@@ -79,7 +79,7 @@ jobs:
     if: ${{ needs.create-tag.outputs.next_version != '' }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Logging
         run: |
@@ -102,7 +102,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
 
       - name: Get overview of PULL_REQUEST
         uses: bbonkr/get-overview-of-pull-requests-action@v1
